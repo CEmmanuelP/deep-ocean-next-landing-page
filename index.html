@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Oceanic Next</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="public/logo.svg" />
+</head>
+<body>
+    <div class="container">
+        <ul class="sci">
+            <li id="0" style="--clr:var(--deep-ocean-red);"><a href="#"><i class="fa-solid fa-d"></i></a></li>
+            <li id="1" style="--clr:var(--deep-ocean-green);"><a href="#"><i class="fa-solid fa-e"></i></a></li>
+            <li id="2" style="--clr:var(--deep-ocean-black);"><a href="#"><i class="fa-solid fa-e"></i></a></li>
+            <li id="3" style="--clr:var(--deep-ocean-orange);"><a href="#"><i class="fa-solid fa-p"></i></a></li>
+            <li id="4" style="--clr:var(--deep-ocean-cyan);"><a href="#"><i class="fa-solid fa-o"></i></a></li>
+            <li id="5" style="--clr:var(--deep-ocean-yellow);"><a href="#"><i class="fa-solid fa-c"></i></a></li>
+            <li id="6" style="--clr:var(--deep-ocean-bright-green);"><a href="#"><i class="fa-solid fa-e"></i></a></li>
+            <li id="7" style="--clr:var(--deep-ocean-blue);"><a href="#"><i class="fa-solid fa-a"></i></a></li>
+            <li id="8" style="--clr:var(--deep-ocean-purple);"><a href="#"><i class="fa-solid fa-n"></i></a></li>
+        </ul>
+        <div id="description" class="description">Hello, world!</div>
+        <div class="links">
+            <a href="https://plugins.jetbrains.com/plugin/25272-deep-oceanic-next-theme?noRedirect=true" style="--clr:var(--deep-ocean-gray)"><i class="fa-solid fa-download"></i></a>
+            <a href="https://github.com/spearkkk/deep-oceanic-next?tab=readme-ov-file" style="--clr:var(--deep-ocean-gray)"><i class="fa-brands fa-github"></i></a>
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        VanillaTilt.init(document.querySelectorAll(".sci li"), {
+		    max: 30,
+		    speed: 400,
+            glare: true
+	    });
+        VanillaTilt.init(document.querySelectorAll(".links a"), {
+            max: 25,
+		    speed: 400,
+            glare: true
+        })
+
+        let list = document.querySelectorAll('.sci li');
+        let bg = document.querySelector('body');
+
+        list.forEach(element => {
+            element.addEventListener("click", handleClick)
+
+            element.addEventListener("mouseenter", function(event) {
+                let color = event.target.style.getPropertyValue('--clr');
+
+                bg.style.backgroundColor = color;
+            })
+
+            element.addEventListener("mouseleave", function(event) {
+                bg.style.backgroundColor = "var(--deep-ocean-background)";
+            })
+        })
+
+        const descriptions = [
+            "DEEP-OCEAN-NEXT : the color theme for intellij",
+            "A color theme inspired by the mysterious depths of the ocean.",
+            "🌊 Have you ever been in deep ocean?",
+            "Someday I hope getting chance to see real deep ocean.",
+            "I just have recreated color theme while imagine how deep ocean is pretty.",
+            "Deep-oceanic-next is the color theme for intellij",
+            "Feel free to use and enjoy this theme!",
+            "Really Thanks...❤️",
+            "- spearkkk -"
+        ];
+
+        const descriptionElement = document.getElementById('description');
+
+        let typingTimer;
+
+        function typeWriter(text, i = 0) {
+            if (i < text.length) {
+                descriptionElement.innerHTML += text.charAt(i);
+                i++;
+                typingTimer = setTimeout(() => typeWriter(text, i), 50);
+            }
+        }
+        function handleClick(event) {
+            const itemId = event.currentTarget.id;
+            const text = descriptions[itemId];
+
+            clearTimeout(typingTimer);
+            descriptionElement.innerHTML = '';
+            typeWriter(text);
+        }
+    </script>
+</body>
+</html>
